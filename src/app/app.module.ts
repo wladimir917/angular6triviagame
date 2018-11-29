@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import {MatSidenavModule, 
@@ -13,24 +13,37 @@ import {MatSidenavModule,
     MatToolbarModule,
     MatCardModule,
     MatChipsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatInputModule
   } from '@angular/material';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent, CategoriesComponent, TagsComponent, QuestionsComponent } from './components';
+import { AppComponent,
+    CategoriesComponent,
+    TagsComponent,
+    QuestionsComponent,
+    QuestionAddUpdateComponent
+  } from './components';
 import { CategoryService, TagService, QuestionService } from './services';
 
 @NgModule({
   declarations: [
-    AppComponent, CategoriesComponent, TagsComponent, QuestionsComponent
+    AppComponent,
+    CategoriesComponent,
+    TagsComponent,
+    QuestionsComponent,
+    QuestionAddUpdateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    //Forms
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     BrowserAnimationsModule,
     MatButtonModule,
@@ -42,7 +55,9 @@ import { CategoryService, TagService, QuestionService } from './services';
     FlexLayoutModule,
     MatCardModule,
     MatChipsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatInputModule
   ],
   providers: [
     CategoryService, TagService, QuestionService
