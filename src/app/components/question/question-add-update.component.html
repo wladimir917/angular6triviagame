@@ -3,12 +3,14 @@
       <mat-card-title>Add Question</mat-card-title>
       <mat-card-header>
         <mat-card-title>
-          <mat-select placeholder="Category" name="category" class="required" formControlName="category">
-            <mat-option *ngFor="let category of categories" [value]="category.id">
-              {{category.categoryName}}
-            </mat-option>
-          </mat-select>
-          <p *ngIf="questionForm.controls.category.errors && !questionForm.controls.category.pristine" style="font-size: 11px;">Select a category</p>
+            <mat-form-field>
+                <mat-select placeholder="Category" name="category" class="required" formControlName="category">
+                  <mat-option *ngFor="let category of categories" [value]="category.id">
+                    {{category.categoryName}}
+                  </mat-option>
+                </mat-select>
+                <p *ngIf="questionForm.controls.category.errors && !questionForm.controls.category.pristine" style="font-size: 11px;">Select a category</p>
+              </mat-form-field>
         </mat-card-title>
       </mat-card-header>
   
@@ -21,10 +23,12 @@
         <div formArrayName="answers" class="well well-lg">
           <div *ngFor="let answer of answers.controls; let i=index" [formGroupName]="i" >
             <mat-form-field class="full-width">
-              <mat-checkbox mat-prefix formControlName="correct"></mat-checkbox>
-              <input matInput  [placeholder]="'Answer ' + (i+1)" formControlName="answerText" />
-              <mat-hint align="end" *ngIf="answers.controls[i].controls.answerText.errors && !answers.controls[i].controls.answerText.pristine" class="error">Answer required</mat-hint>
-            </mat-form-field>
+              <section class="answer-section"> 
+                <mat-checkbox mat-prefix formControlName="correct"></mat-checkbox>
+                <input class="answer-margin" matInput  [placeholder]="'Answer ' + (i+1)" formControlName="answerText" />
+                <mat-hint align="end" *ngIf="answers.controls[i].controls.answerText.errors && !answers.controls[i].controls.answerText.pristine" class="error">Answer required</mat-hint>    
+              </section>
+           </mat-form-field>
           </div>
         </div>
         <div class="error" *ngIf="answers.valid && questionForm.hasError('correctAnswerCountInvalid')">
